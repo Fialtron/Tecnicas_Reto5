@@ -1,13 +1,13 @@
 package com.company;
+
 import java.util.*;
 
 public class Menu {
     boolean exit = false;
     int option;
     int nRegistros;
-    List<Pokebola> pokebolas =  new ArrayList<>();
+    List<Pokebola> pokebolas = new ArrayList<>();
     List<Pokemon> pokemons = new ArrayList<>();
-
 
     private Scanner sc = new Scanner(System.in);
 
@@ -35,9 +35,19 @@ public class Menu {
                         crearPokebolas();
                         break;
                     case 3:
-                        if (pokebolas.size() != 0){
+                        if (pokebolas.size() != 0) {
+
+                            for (int i = 0; i < pokemons.size(); i++) {
+                                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
+                                        + " Nombre: " + pokemons.get(i).nombre);
+                            }
                             guardarPokemon();
-                        }else {
+
+                            for (int i = 0; i < pokemons.size(); i++) {
+                                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
+                                        + " Nombre: " + pokemons.get(i).nombre);
+                            }
+                        } else {
                             System.out.print("Debe tener pokebolas para usar esta opción ");
                         }
                         break;
@@ -48,7 +58,16 @@ public class Menu {
 
                         break;
                     case 6:
+                        for (int i = 0; i < pokemons.size(); i++) {
+                            System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
+                                    + " Nombre: " + pokemons.get(i).nombre);
+                        }
+                        sacarPokemon();
 
+                        for (int i = 0; i < pokemons.size(); i++) {
+                            System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
+                                    + " Nombre: " + pokemons.get(i).nombre);
+                        }
                         break;
                     case 7:
                         System.out.print("Hasta luego!");
@@ -63,7 +82,7 @@ public class Menu {
         }
     }
 
-    private void crearPokebolas(){
+    private void crearPokebolas() {
 
         System.out.print("Ingrese el numero de pokebolas que desea crear: ");
 
@@ -84,7 +103,6 @@ public class Menu {
 
                     int opcion = 0;
 
-
                     try {
                         System.out.print(" \nSeleccione el tamaño de la pokebola que desea : ");
                         System.out.print(" \n1. Pequeña : ");
@@ -93,7 +111,7 @@ public class Menu {
                         System.out.print("\nIngrese opción: ");
                         opcion = sc.nextInt();
 
-                        switch (opcion){
+                        switch (opcion) {
                             case 1:
                                 pokebolas.add(new Pokebola("Pequeña"));
                                 break;
@@ -109,13 +127,12 @@ public class Menu {
                                 break;
                         }
 
-
-
                     } catch (InputMismatchException e) {
-                        System.out.println("\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
+                        System.out.println(
+                                "\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
                     }
                 }
-                System.out.println("\n Sus pokebolas ahora son:" +pokebolas.size()+"\n\n");
+                System.out.println("\n Sus pokebolas ahora son:" + pokebolas.size() + "\n\n");
             } else {
                 System.out.println("Inserte un numero mayor a 0. Por favor intente nuevamente\n\n");
             }
@@ -125,7 +142,7 @@ public class Menu {
 
     }
 
-    private void crearPokemon(){
+    private void crearPokemon() {
         System.out.print("Ingrese el numero de pokemons que desea crear: ");
 
         try {
@@ -155,7 +172,7 @@ public class Menu {
 
                         opcion = sc.nextInt();
 
-                        switch (opcion){
+                        switch (opcion) {
                             case 1:
                                 System.out.print(" \nDigite el nombre de su nuevo pokemon : ");
                                 pokeNombre = sc.next();
@@ -176,13 +193,12 @@ public class Menu {
                                 break;
                         }
 
-
-
                     } catch (InputMismatchException e) {
-                        System.out.println("\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
+                        System.out.println(
+                                "\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
                     }
                 }
-                System.out.println("\n Ahora tiene: "+pokemons.size() +" pokemons \n\n");
+                System.out.println("\n Ahora tiene: " + pokemons.size() + " pokemons \n\n");
             } else {
                 System.out.println("Inserte un numero mayor a 0. Por favor intente nuevamente\n\n");
             }
@@ -192,15 +208,15 @@ public class Menu {
 
     }
 
-    private void guardarPokemon(){
+    private void guardarPokemon() {
 
         System.out.print("\nSeleccione el numero de la pokebola que desea utilizar: ");
 
         try {
 
             for (int i = 0; i < pokebolas.size(); i++) {
-                if (pokebolas.get(i).getPokemon() != null){
-                    System.out.print("\n"+ i +"."+" Tamaño: "+ pokebolas.get(i).getEscala());
+                if (pokebolas.get(i).getPokemon() == null) {
+                    System.out.print("\n" + i + "." + " Tamaño: " + pokebolas.get(i).getEscala());
                 }
             }
 
@@ -210,7 +226,8 @@ public class Menu {
             System.out.print("\nSeleccione el numero del pokemon que desea utilizar: ");
 
             for (int i = 0; i < pokemons.size(); i++) {
-                System.out.print("\n"+ i +"."+" Tipo: "+ pokemons.get(i).getClass().getSimpleName()+" Nombre: "+ pokemons.get(i).nombre);
+                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName() + " Nombre: "
+                        + pokemons.get(i).nombre);
             }
 
             System.out.print("\nIngrese opción : ");
@@ -223,18 +240,42 @@ public class Menu {
             System.out.println("Inserte un numero valido. Por favor intente nuevamente\n\n");
         }
 
-
     }
 
-    private void gritosPokemon(){
+    private void gritosPokemon() {
         System.out.println("\nCada uno de los pokemons por fuera de pokebolas van a gritar");
 
         for (int i = 0; i < pokemons.size(); i++) {
-            System.out.println("\nTipo: "+pokemons.get(i).getClass().getSimpleName() +" Nombre: "+ pokemons.get(i).nombre +" Grito: "+ pokemons.get(i).gritar());
+            System.out.println("\nTipo: " + pokemons.get(i).getClass().getSimpleName() + " Nombre: "
+                    + pokemons.get(i).nombre + " Grito: " + pokemons.get(i).gritar());
         }
 
     }
 
+    private void sacarPokemon() {
+
+        System.out.print("\nSeleccione el pokemon que desea sacar: ");
+
+        try {
+
+            for (int i = 0; i < pokebolas.size(); i++) {
+                if (pokebolas.get(i).getPokemon() != null) {
+                    System.out.print("\n" + i + "." + " Pokebola: " + pokebolas.get(i).getEscala());
+                    System.out.print("\n---Nombre: " + pokebolas.get(i).getPokemon().nombre + " Tipo: "
+                            + pokebolas.get(i).getPokemon().getClass().getSimpleName());
+                }
+            }
+
+            System.out.print("\nIngrese opción : ");
+            int pokeOpcion = sc.nextInt();
+            pokemons.add(pokebolas.get(pokeOpcion).getPokemon());
+            pokebolas.get(pokeOpcion).setPokemon(null);
+
+        } catch (NumberFormatException ex) {
+            System.out.println("Inserte un numero valido. Por favor intente nuevamente\n\n");
+        }
+
+    }
 
     private boolean validate(String input) {
         return input.matches("[0-9]{1,13}(\\.[0-9]*)?");
