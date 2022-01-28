@@ -11,7 +11,7 @@ public class Wartortle extends Pokemon{
 
     @Override
     public Pokemon evolucionar() {
-        return null;
+        return new Blastoise(this.nombre, this.vida);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Pikachu extends Pokemon{
 
     @Override
     public Pokemon evolucionar() {
-        return null;
+        return new Raichu(this.nombre, this.vida);
     }
 
     @Override

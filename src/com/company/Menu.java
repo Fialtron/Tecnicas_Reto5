@@ -36,17 +36,7 @@ public class Menu {
                         break;
                     case 3:
                         if (pokebolas.size() != 0) {
-
-                            for (int i = 0; i < pokemons.size(); i++) {
-                                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
-                                        + " Nombre: " + pokemons.get(i).nombre);
-                            }
                             guardarPokemon();
-
-                            for (int i = 0; i < pokemons.size(); i++) {
-                                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
-                                        + " Nombre: " + pokemons.get(i).nombre);
-                            }
                         } else {
                             System.out.print("Debe tener pokebolas para usar esta opción ");
                         }
@@ -55,19 +45,10 @@ public class Menu {
                         gritosPokemon();
                         break;
                     case 5:
-
+                        evolucionarPokemon();    
                         break;
                     case 6:
-                        for (int i = 0; i < pokemons.size(); i++) {
-                            System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
-                                    + " Nombre: " + pokemons.get(i).nombre);
-                        }
                         sacarPokemon();
-
-                        for (int i = 0; i < pokemons.size(); i++) {
-                            System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName()
-                                    + " Nombre: " + pokemons.get(i).nombre);
-                        }
                         break;
                     case 7:
                         System.out.print("Hasta luego!");
@@ -275,6 +256,35 @@ public class Menu {
             System.out.println("Inserte un numero valido. Por favor intente nuevamente\n\n");
         }
 
+    }
+
+    private void evolucionarPokemon(){
+        Pokemon evolucion = null;
+        System.out.print("\nSeleccione el numero del pokemon que desea evolucionar: ");
+
+        try {
+
+            for (int i = 0; i < pokemons.size(); i++) {
+                System.out.print("\n" + i + "." + " Tipo: " + pokemons.get(i).getClass().getSimpleName() + " Nombre: "
+                        + pokemons.get(i).nombre);
+            }
+
+            System.out.print("\nIngrese opción : ");
+            int pokeOpcion = sc.nextInt();
+            try {
+                evolucion = pokemons.get(pokeOpcion).evolucionar();
+                if (evolucion != null) {
+                    pokemons.remove(pokeOpcion);
+                    pokemons.add(evolucion);
+                    System.out.println(evolucion.gritar());
+                }
+            } catch (NoEvolucionaException e) {
+                System.out.println(new NoEvolucionaException().getMessage());
+            }
+          
+        } catch (NumberFormatException ex) {
+            System.out.println("Inserte un numero valido. Por favor intente nuevamente\n\n");
+        }
     }
 
     private boolean validate(String input) {
